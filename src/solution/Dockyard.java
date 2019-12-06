@@ -24,9 +24,9 @@ public class Dockyard implements IDockyard {
 		
 		//This is where you can add more cities. For each city, there will be a new Queue initialized.
 		//Program will keep track of the index of the Queue based on the location in the CityNames index.
+		CityNames.add("LA");
 		CityNames.add("BOS");
 		CityNames.add("NYC");
-		CityNames.add("LA");
 		CityNames.add("ATL");
 		
 		dockingStations = new ArrayList<Queue<String>>();
