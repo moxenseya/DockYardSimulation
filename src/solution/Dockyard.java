@@ -14,7 +14,7 @@ public class Dockyard implements IDockyard {
 	List<String> CityNames;
 	
 
-	List<Queue<Integer>> dockingStations;
+	List<Queue<String>> dockingStations;
 		
 	
 	public Dockyard() {
@@ -29,11 +29,11 @@ public class Dockyard implements IDockyard {
 		CityNames.add("LA");
 		CityNames.add("ATL");
 		
-		dockingStations = new ArrayList<Queue<Integer>>();
+		dockingStations = new ArrayList<Queue<String>>();
 		
 		for (int i=0;i<CityNames.size();i++)
 		{
-			dockingStations.add(new PriorityQueue<Integer>());
+			dockingStations.add(new PriorityQueue<String>());
 		}
 		
 		
@@ -45,6 +45,12 @@ public class Dockyard implements IDockyard {
 	@Override
 	public void addContainer(IContainer container) {
 		// TODO Auto-generated method stub
+		
+		String containerDestination= container.destinationCity();
+		
+		int stationIndex = CityNames.indexOf(containerDestination);
+		
+		dockingStations.get(stationIndex).add(container.id());
 
 
 

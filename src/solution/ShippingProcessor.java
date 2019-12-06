@@ -35,6 +35,15 @@ public class ShippingProcessor extends ShippingProcessorBase {
 	protected IShip processShip(String registration) {
 		// TODO Auto-generated method stub
 		System.out.println("This what a ship is supposed to do.");
+		List<IContainer> containerList = this.readManifest(registration);
+		
+		
+		for(IContainer container : containerList)
+		{
+			this.getDockyard().addContainer(container);
+		}
+		
+		
 		return null;
 	}
 
