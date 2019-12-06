@@ -5,34 +5,47 @@ import shipping.ITruck;
 
 public class Truck implements ITruck {
 
+	private String Truck_id;
+	private String Dest_city;
+	private IContainer container;
 	@Override
 	public String registration() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.Truck_id;
 	}
 
 	@Override
 	public String destinationCity() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.Dest_city;
 	}
 
 	@Override
 	public boolean addContainer(IContainer container) {
 		// TODO Auto-generated method stub
-		return false;
+		if(!this.hasContainer())
+		{
+			this.container=container;
+			return true;
+		}
+		else{
+			return false;
+		}
+
 	}
 
 	@Override
 	public IContainer offloadContainer() {
 		// TODO Auto-generated method stub
-		return null;
+		IContainer temp = this.container;
+		this.container=null;
+		return temp;
 	}
 
 	@Override
 	public boolean hasContainer() {
 		// TODO Auto-generated method stub
-		return false;
+		return(this.container!=null);
 	}
 
 	@Override

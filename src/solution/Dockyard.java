@@ -4,7 +4,26 @@ import shipping.IContainer;
 import shipping.IDockyard;
 import shipping.ITruck;
 
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.Queue;
+
 public class Dockyard implements IDockyard {
+
+	ArrayList<String> CityNames = new ArrayList<>(){
+		{
+			add("BOS");
+			add("NYC");
+			add("LA");
+			add("ATL");
+		}
+	};
+
+
+	ArrayList<Queue> dockingStation = new ArrayList<>();
+
+
+
 
 	@Override
 	public void addContainer(IContainer container) {
