@@ -74,7 +74,7 @@ public class Dockyard implements IDockyard {
 		int numBoxes = 0;
 		for(int i =0;i<dockingStations.size();i++)
 		{
-			numBoxes+=dockingStations.get(0).size();
+			numBoxes+=dockingStations.get(i).size();
 		}
 
 		
