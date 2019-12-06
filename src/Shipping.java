@@ -4,13 +4,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import shipping.*;
-import example1.*;
+//import example1.*;
 
 // Once you have your code implemented in the solution
 // package, you need to uncomment the following line
 // and comment out the import for example1.* above
 
-//import solution.*;
+import solution.*;
 
 public class Shipping {
 
@@ -33,6 +33,7 @@ public class Shipping {
 		ShippingProcessor processor = new ShippingProcessor(dockyard);
 		
 		processor.processEvents("ShippingEvents");		
+		
 	}
 	
 }

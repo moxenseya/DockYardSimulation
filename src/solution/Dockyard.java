@@ -6,22 +6,35 @@ import shipping.ITruck;
 
 import java.lang.reflect.Array;
 import java.util.*;
-import java.util.Queue;
+
+import javax.management.ValueExp;
 
 public class Dockyard implements IDockyard {
 
-	ArrayList<String> CityNames = new ArrayList<>(){
+	List<String> CityNames;
+	
+
+	List<Queue<Integer>> dockingStations;
+		
+	
+	public Dockyard() {
+		// TODO Auto-generated constructor stub
+		CityNames  = new ArrayList<String>();
+		CityNames.add("BOS");
+		CityNames.add("NYC");
+		CityNames.add("LA");
+		CityNames.add("ATL");
+		
+		dockingStations = new ArrayList<Queue<Integer>>();
+		
+		for (int i=0;i<CityNames.size();i++)
 		{
-			add("BOS");
-			add("NYC");
-			add("LA");
-			add("ATL");
+			dockingStations.add(new PriorityQueue<Integer>());
 		}
-	};
-
-
-	ArrayList<Queue> dockingStation = new ArrayList<>();
-
+		
+		
+		
+	}	
 
 
 

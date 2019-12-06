@@ -18,6 +18,7 @@ public class Dockyard implements IDockyard {
 	@Override
 	public boolean loadTruck(ITruck truck) {
 		// TODO Auto-generated method stub
+		return false;
 
 	}
 
