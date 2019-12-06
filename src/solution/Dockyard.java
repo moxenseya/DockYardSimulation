@@ -6,28 +6,51 @@ import shipping.ITruck;
 
 import java.lang.reflect.Array;
 import java.util.*;
-import java.util.Queue;
+
+import javax.management.ValueExp;
 
 public class Dockyard implements IDockyard {
 
-	ArrayList<String> CityNames = new ArrayList<>(){
+	List<String> CityNames;
+	
+
+	List<Queue<String>> dockingStations;
+		
+	
+	public Dockyard() {
+		
+		// TODO Auto-generated constructor stub
+		CityNames  = new ArrayList<String>();
+		
+		//This is where you can add more cities. For each city, there will be a new Queue initialized.
+		//Program will keep track of the index of the Queue based on the location in the CityNames index.
+		CityNames.add("LA");
+		CityNames.add("BOS");
+		CityNames.add("NYC");
+		CityNames.add("ATL");
+		
+		dockingStations = new ArrayList<Queue<String>>();
+		
+		for (int i=0;i<CityNames.size();i++)
 		{
-			add("BOS");
-			add("NYC");
-			add("LA");
-			add("ATL");
+			dockingStations.add(new PriorityQueue<String>());
 		}
-	};
-
-
-	ArrayList<Queue> dockingStation = new ArrayList<>();
-
+		
+		
+		
+	}	
 
 
 
 	@Override
 	public void addContainer(IContainer container) {
 		// TODO Auto-generated method stub
+		
+		String containerDestination= container.destinationCity();
+		
+		int stationIndex = CityNames.indexOf(containerDestination);
+		
+		dockingStations.get(stationIndex).add(container.id());
 
 
 
@@ -54,7 +77,25 @@ public class Dockyard implements IDockyard {
 	@Override
 	public void printDetails() {
 		// TODO Auto-generated method stub
+		int numBoxes = 0;
+		for(int i =0;i<dockingStations.size();i++)
+		{
+			numBoxes+=dockingStations.get(i).size();
+		}
 
+		
+			System.out.println("The dockyard contains " + numBoxes +" containers.");
+			if(numBoxes>0)
+			{
+				for(int i =0;i<CityNames.size();i++)
+				{
+					System.out.print(CityNames.get(i) + ": ");
+					System.out.print(dockingStations.get(i).size() + "\n");
+					
+				}
+			}
+			
+		
 	}
 
 }
