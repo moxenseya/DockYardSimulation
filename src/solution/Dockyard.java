@@ -18,8 +18,12 @@ public class Dockyard implements IDockyard {
 		
 	
 	public Dockyard() {
+		
 		// TODO Auto-generated constructor stub
 		CityNames  = new ArrayList<String>();
+		
+		//This is where you can add more cities. For each city, there will be a new Queue initialized.
+		//Program will keep track of the index of the Queue based on the location in the CityNames index.
 		CityNames.add("BOS");
 		CityNames.add("NYC");
 		CityNames.add("LA");
@@ -67,7 +71,25 @@ public class Dockyard implements IDockyard {
 	@Override
 	public void printDetails() {
 		// TODO Auto-generated method stub
+		int numBoxes = 0;
+		for(int i =0;i<dockingStations.size();i++)
+		{
+			numBoxes+=dockingStations.get(0).size();
+		}
 
+		
+			System.out.println("The dockyard contains " + numBoxes +" containers.");
+			if(numBoxes>0)
+			{
+				for(int i =0;i<CityNames.size();i++)
+				{
+					System.out.print(CityNames.get(i) + ": ");
+					System.out.print(dockingStations.get(i).size() + "\n");
+					
+				}
+			}
+			
+		
 	}
 
 }
