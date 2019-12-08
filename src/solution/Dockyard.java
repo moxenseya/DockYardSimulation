@@ -14,7 +14,7 @@ public class Dockyard implements IDockyard {
 	List<String> CityNames;
 	
 
-	List<Queue<String>> dockingStations;
+	List<Queue<IContainer>> dockingStations;
 		
 	
 	public Dockyard() {
@@ -29,11 +29,11 @@ public class Dockyard implements IDockyard {
 		CityNames.add("NYC");
 		CityNames.add("ATL");
 		
-		dockingStations = new ArrayList<Queue<String>>();
+		dockingStations = new ArrayList<Queue<IContainer>>();
 		
 		for (int i=0;i<CityNames.size();i++)
 		{
-			dockingStations.add(new PriorityQueue<String>());
+			dockingStations.add(new LinkedList<>());
 		}
 		
 		
@@ -50,8 +50,8 @@ public class Dockyard implements IDockyard {
 		
 		int stationIndex = CityNames.indexOf(containerDestination);
 		
-		dockingStations.get(stationIndex).add(container.id());
-
+		//dockingStations.get(stationIndex).add(container);
+		dockingStations.get(stationIndex).add(container);
 
 
 	}
@@ -59,19 +59,39 @@ public class Dockyard implements IDockyard {
 	@Override
 	public boolean loadTruck(ITruck truck) {
 		// TODO Auto-generated method stub
+		String destinationCityOfTruck = truck.destinationCity();
+
+		int stationIndex = CityNames.indexOf(destinationCityOfTruck);
+
+		//Now we check if queue is empty or has a container
+		IContainer requiredContainer;
+
+		if(this.containerCount(destinationCityOfTruck)>=1) {
+		requiredContainer = dockingStations.get(stationIndex).poll();
+		truck.addContainer(requiredContainer);
+		return true;
+	}
+	else
 	return  false;
 	}
 
 	@Override
 	public int containerCount() {
 		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
 	@Override
 	public int containerCount(String destinationCity) {
 		// TODO Auto-generated method stub
-		return 0;
+		int numBoxes =0;
+
+		for(int i =0;i<dockingStations.size();i++)
+		{
+			numBoxes+=dockingStations.get(i).size();
+		}
+		return numBoxes;
 	}
 
 	@Override

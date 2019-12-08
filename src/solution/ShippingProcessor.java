@@ -28,7 +28,17 @@ public class ShippingProcessor extends ShippingProcessorBase {
 	@Override
 	protected void processTruck(String registration, String destination) {
 		// TODO Auto-generated method stub
-		System.out.println("This what a truck is supposed to do.");
+		//System.out.println("This what a truck is supposed to do.");
+		Truck truck = new Truck(registration,destination);
+		System.out.print("Before loading: ");
+		truck.printDetails();
+
+		this.getDockyard().loadTruck(truck);
+
+		System.out.print("After loading: ");
+		truck.printDetails();
+
+
 	}
 
 	@Override
