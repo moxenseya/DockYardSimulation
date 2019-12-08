@@ -60,7 +60,7 @@ public class Ship implements IShip {
 		{
 			System.out.print("After ");
 		}
-		System.out.print("unloading: Ship "+this.getRegistration()+"has "+this.containers().size()+"\n");
+		System.out.print("unloading: Ship "+this.getRegistration()+" has "+this.containers().size()+"\n");
 		
 	}
 

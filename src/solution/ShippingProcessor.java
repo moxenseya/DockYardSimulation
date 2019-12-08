@@ -20,10 +20,11 @@ public class ShippingProcessor extends ShippingProcessorBase {
 		// TODO Auto-generated constructor stub
 	}
 
-//	@Override
-//	protected void processShippingEvent(String input) {
-//		// TODO Auto-generated method stub
-//	}
+	@Override
+	protected void processShippingEvent(String input) {
+		// TODO Auto-generated method stub
+super.processShippingEvent(input);
+	}
 
 	@Override
 	protected void processTruck(String registration, String destination) {
