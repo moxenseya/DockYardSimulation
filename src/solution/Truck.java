@@ -8,6 +8,13 @@ public class Truck implements ITruck {
 	private String Truck_id;
 	private String Dest_city;
 	private IContainer container;
+
+	public Truck(String id, String dest_city){
+		this.Truck_id=id;
+		this.Dest_city=dest_city;
+		container = null;
+	}
+
 	@Override
 	public String registration() {
 		// TODO Auto-generated method stub
@@ -51,7 +58,11 @@ public class Truck implements ITruck {
 	@Override
 	public void printDetails() {
 		// TODO Auto-generated method stub
-		
+		System.out.print("Truck " + this.registration() + " is headed to " + this.destinationCity() + " with ");
+		if(this.hasContainer())
+			System.out.println("Container " + this.container.id());
+		else
+			System.out.println("no container");
 	}
 
 }

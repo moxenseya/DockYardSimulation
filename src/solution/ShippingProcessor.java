@@ -20,31 +20,55 @@ public class ShippingProcessor extends ShippingProcessorBase {
 		// TODO Auto-generated constructor stub
 	}
 
-//	@Override
-//	protected void processShippingEvent(String input) {
-//		// TODO Auto-generated method stub
-//	}
+	@Override
+	protected void processShippingEvent(String input) {
+		// TODO Auto-generated method stub
+super.processShippingEvent(input);
+	}
 
 	@Override
 	protected void processTruck(String registration, String destination) {
 		// TODO Auto-generated method stub
-		System.out.println("This what a truck is supposed to do.");
+		//System.out.println("This what a truck is supposed to do.");
+		Truck truck = new Truck(registration,destination);
+		System.out.print("Before loading: ");
+		truck.printDetails();
+
+		this.getDockyard().loadTruck(truck);
+
+		System.out.print("After loading: ");
+		truck.printDetails();
+
+
 	}
 
 	@Override
 	protected IShip processShip(String registration) {
 		// TODO Auto-generated method stub
-		System.out.println("This what a ship is supposed to do.");
-		List<IContainer> containerList = this.readManifest(registration);
-		
-		
+		//System.out.println("Before unloading: Ship ");
+		Ship ship = new Ship();
+		ship.setRegistration(registration);
+		List<IContainer> containerList = this.readManifest(ship.getRegistration());
+
+		//Loading the ship
 		for(IContainer container : containerList)
+		{
+			ship.addContainer(container);
+		}
+
+		ship.printDetails(); //Before unloading part
+
+		List<IContainer> offloadFromShip = ship.offload();
+
+		ship.printDetails();
+		
+		for(IContainer container : offloadFromShip)
 		{
 			this.getDockyard().addContainer(container);
 		}
 		
 		
-		return null;
+		return ship;
 	}
 
 	@Override
@@ -88,4 +112,4 @@ public class ShippingProcessor extends ShippingProcessorBase {
 		return containerList;
 	}
 	
-};
+}
